@@ -150,6 +150,8 @@ class Project(models.Model):
             return data[0][:3].upper()
 
         key = []
+        if self.id:
+            key.append(self.id)
         for item in data:
             key.append(item[:2].upper())
         return "".join(key)
