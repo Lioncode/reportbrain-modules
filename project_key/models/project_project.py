@@ -4,6 +4,7 @@
 from odoo import models, fields, api, _
 from odoo.osv import expression
 from odoo.tools import config
+import uuid
 
 
 class Project(models.Model):
@@ -148,12 +149,12 @@ class Project(models.Model):
         data = text.split(' ')
         if len(data) == 1:
             return data[0][:3].upper()
-
         key = []
-        if self.id:
-            key.append(self.id)
+        random_val = uuid.uuid4().hex.upper()[0:4]
+        key.append(random_val)
+        key.append('-')
         for item in data:
-            key.append(item[:2].upper())
+            key.append(item[:1].upper())
         return "".join(key)
 
     @api.multi
