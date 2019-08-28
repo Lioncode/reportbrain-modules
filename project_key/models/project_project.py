@@ -23,9 +23,9 @@ class Project(models.Model):
         copy=False
     )
 
-#    _sql_constraints = [
-#        ("project_key_unique", "UNIQUE(key)", "Project key must be unique")
-#    ]
+    _sql_constraints = [
+        ("project_key_unique", "UNIQUE(key)", "Project key must be unique")
+    ]
 
     @api.multi
     @api.onchange('name')
