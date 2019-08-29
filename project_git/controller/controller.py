@@ -357,8 +357,9 @@ class GitController(http.Controller):
 
             commit_data["branch_id"] = branch.id
             commit_data["author_id"] = commit_author.id
-            commit_data["task_ids"] = \
-                len(tasks) and [(6, 0, tasks.ids)] or []
+            #commit_data["task_ids"] = \
+            #    len(tasks) and [(6, 0, tasks.ids)] or []
+            commit_data["message"] = tasks
 
             commit = GitCommit.search([
                 ("name", '=', commit_data["name"]),
