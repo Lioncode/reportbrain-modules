@@ -152,7 +152,7 @@ class Project(models.Model):
         key = []
         random_val = uuid.uuid4().hex.upper()[0:4]
         key.append(random_val)
-        key.append('-')
+#        key.append('-')
         for item in data:
             key.append(item[:1].upper())
         return "".join(key)
