@@ -357,9 +357,8 @@ class GitController(http.Controller):
 
             commit_data["branch_id"] = branch.id
             commit_data["author_id"] = commit_author.id
-            #commit_data["task_ids"] = \
-            #    len(tasks) and [(6, 0, tasks.ids)] or []
-            commit_data["message"] = tasks
+            commit_data["task_ids"] = \
+                len(tasks) and [(6, 0, tasks.ids)] or []
 
             commit = GitCommit.search([
                 ("name", '=', commit_data["name"]),
@@ -373,13 +372,13 @@ class GitController(http.Controller):
 
             if commit.is_orphan():
                 orphan_commits.append(commit)
-            #else:
-            #    for task in tasks:
-            #        item = task_commits.get(
-            #            task.id, {'task': task, 'commits': []}
-            #        )
-            #        item['commits'].append(commit)
-            #        task_commits[task.id] = item
+            else:
+                for task in tasks:
+                    item = task_commits.get(
+                        task.id, {'task': task, 'commits': []}
+                    )
+                    item['commits'].append(commit)
+                    task_commits[task.id] = item
 
     def send_task_commits(self, task_commits, sender, context):
         values = {

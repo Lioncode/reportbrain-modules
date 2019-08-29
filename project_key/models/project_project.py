@@ -5,7 +5,7 @@ from odoo import models, fields, api, _
 from odoo.osv import expression
 from odoo.tools import config
 import uuid
-
+import string
 
 class Project(models.Model):
     _inherit = "project.project"
@@ -145,14 +145,13 @@ class Project(models.Model):
 
         if not text:
             return ''
-
-        data = text.split(' ')
+        data1= "".join([c for c in text if c in string.ascii_letters or c in string.whitespace])
+        data = data1.split(' ')
         if len(data) == 1:
             return data[0][:3].upper()
         key = []
         random_val = uuid.uuid4().hex.upper()[0:4]
         key.append(random_val)
-#        key.append('-')
         for item in data:
             key.append(item[:1].upper())
         return "".join(key)
