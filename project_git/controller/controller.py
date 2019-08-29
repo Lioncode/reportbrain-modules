@@ -373,13 +373,13 @@ class GitController(http.Controller):
 
             if commit.is_orphan():
                 orphan_commits.append(commit)
-            else:
-                for task in tasks:
-                    item = task_commits.get(
-                        task.id, {'task': task, 'commits': []}
-                    )
-                    item['commits'].append(commit)
-                    task_commits[task.id] = item
+            #else:
+            #    for task in tasks:
+            #        item = task_commits.get(
+            #            task.id, {'task': task, 'commits': []}
+            #        )
+            #        item['commits'].append(commit)
+            #        task_commits[task.id] = item
 
     def send_task_commits(self, task_commits, sender, context):
         values = {
