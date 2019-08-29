@@ -332,8 +332,8 @@ class GitController(http.Controller):
             )
             tasks = len(task_keys) and ProjectTask.search([
                 ("key", "in", task_keys)
-            ]) or []
-
+            ])[0] or []
+            _logger.error(tasks)
             # ----------------------------------------------------
             # UPDATE/CREATE Commit Author
             # ----------------------------------------------------
